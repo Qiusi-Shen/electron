@@ -1,0 +1,30 @@
+#include <stdio.h>   // printf
+#include <stdlib.h>  // exit
+#include <unistd.h>  // getopt
+
+int main (int argc, char **argv){
+    int c;
+    int digit_optind = 0;
+
+    int this_option_optind = optind ? optind : 1;
+    int option_index = 0;
+
+        static struct option long_options[] = {
+            {"input",  required_argument, 0, 0 },
+            {"output",  required_argument, 0, 0 },
+            {"segfault",  no_argument, 0, 0 },
+            {"catch", no_argument, 0, 0 },
+            {0,0,0,0}
+
+        };
+
+    while(1){
+        c = getopt_long(argc, argv, "i:o:sc", long_options, &option_index);
+
+        if(c==-1)
+            break;
+        
+        printf("argument = %s\n", optarg );
+
+    }
+}
